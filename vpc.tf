@@ -21,6 +21,17 @@ resource "aws_subnet" "us-east-1a-public" {
         Name = "Public Subnet"
     }
 }
+resource "aws_subnet" "us-east-2c-public" {
+    vpc_id = "${aws_vpc.yogesh-demo.id}"
+
+    cidr_block = "${var.private_subnet_cidr}"
+    availability_zone = "us-east-2c"
+
+    tags {
+        Name = "Public Subnet"
+    }
+}
+
 
 #route table
 resource "aws_route_table" "us-east-1a-public" {

@@ -26,7 +26,7 @@ vpc_id = "${aws_vpc.yogesh-demo.id}"
         Name = "WebServerSG"
     }
 }
-resource "aws_instance" "web-1" {
+/*resource "aws_instance" "web-1" {
     ami = "ami-82f4dae7"
     availability_zone = "us-east-2b"
     instance_type = "t2.micro"
@@ -40,4 +40,4 @@ resource "aws_instance" "web-1" {
     tags {
         Name = "Web Server 1"
     }
-}
+}*/
