@@ -3,16 +3,40 @@ resource "aws_launch_configuration" "agent-lc" {
     image_id = "ami-82f4dae7"
     security_groups=["${aws_security_group.web.id}"]
     instance_type = "t2.micro"
-    #user_data = "${file("init-agent-instance.sh")}"
-   
+    key_name="yogeshb"
+    associate_public_ip_address = true
+   # user_data =  "${data.template_file.userdata.rendered}"
+    user_data = "${data.template_file.sample.rendered}"
+            
  
     lifecycle {
+
         create_before_destroy = true
     }
+ 
+
 #depends_on = ["{aws_security_group.web"]
 
 
  }
+data  "template_file" "sample" {
+  template = "${file("userdata.tpl")}"
+
+  vars = {
+    value = "hello world"
+   # script = "${file("userdata.sh")}"
+  }
+}
+/*
+data "template_file" "userdata" {
+    template = "userdata.tpl"
+     vars {
+      #  dbhost = "${aws_db_instance.wpdb.address}"
+  }
+
+
+#depends_on = ["{aws_db_instance.wpdb"]
+}*/
 
 #Auto Scalling
 resource "aws_autoscaling_group" "agents" {

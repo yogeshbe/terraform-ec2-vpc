@@ -2,7 +2,7 @@
  * Application LoadBalancer
  */
 resource "aws_alb" "front" {
-  name            = "test"
+  name            = "wpapp"
   internal        = false
   security_groups = ["${aws_security_group.web.id}"]
   subnets         =  ["${aws_subnet.us-east-1a-public.id}","${aws_subnet.us-east-2c-public.id}"]
